@@ -1,0 +1,23 @@
+{% extends "article/base.html" %}
+
+{% block content %}
+    <div class="posts">
+        {% if error %}
+            <h2 class="post-title">没有相关文章</h2>
+        {% else %}
+            {% for post in post_list %}
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title"><a href="{% url "article:detail" id=post.id %}">{{ post.title }}</a></h2>
+
+                        <p class="post-meta">
+                            Time: <a class="post-author" href="#">{{ post.date_time |date:"Y /m /d" }}</a> <a
+                                class="post-category post-category-js"
+                                href="{% url "article:search_tag" tag=post.category %}">{{ post.category }}</a>
+                        </p>
+                    </header>
+                </section>
+            {% endfor %}
+        {% endif %}
+    </div><!-- /.blog-post -->
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "article/base.html" %}
+
+{% load custom_markdown %}
+{% block content %}
+<div class="posts">
+    {% for post in post_list %}
+        <section class="post">
+            <header class="post-header">
+                <h2 class="post-title"><a href="{% url "article:detail" id=post.id %}">{{ post.title }}</a></h2>
+
+                    <p class="post-meta">
+                        Time:  <a class="post-author" href="#">{{ post.date_time |date:"Y M d"}}</a> <a class="post-category post-category-js" href="{% url "article:search_tag" tag=post.category %}">{{ post.category|title }}</a>
+                    </p>
+            </header>
+
+                <div class="post-description">
+                    <p>
+                        {{ post.content |custom_markdown|truncatewords_html:100 }}
+                    </p>
+                </div>
+                <a class="pure-button" href="{% url "article:detail" id=post.id %}">Read More >>> </a>
+        </section>
+    {% endfor %}
+</div><!-- /.blog-post -->
+{% endblock %}
