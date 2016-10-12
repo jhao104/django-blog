@@ -16,7 +16,6 @@ import markdown
 
 from django import template
 from django.template.defaultfilters import stringfilter
-from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 
 register = template.Library()

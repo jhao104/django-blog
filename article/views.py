@@ -50,3 +50,5 @@ def blogSearch(request):
             return render(request, 'article/archives.html', {'error': error, 'post_list': post_list})
 
     return redirect('/')
+
+
