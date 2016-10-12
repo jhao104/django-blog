@@ -37,6 +37,10 @@ h3 {
     background: rgb(61, 79, 93);
     color: #fff;
 }
+.box {
+    background: rgb(61, 79, 93);
+    color: #fff;
+}
 
 .brand-title,
 .brand-tagline {
@@ -86,7 +90,7 @@ h3 {
 }
 
 .content {
-    padding: 2em 1em 0;
+    padding: 2em 1em 2em;
 }
 
 .post {
@@ -160,6 +164,7 @@ h3 {
     .content {
         padding: 2em 3em 0;
         margin-left: 25%;
+        margin-right: 25%;
     }
 
     .header {
@@ -171,5 +176,11 @@ h3 {
         position: fixed;
         top: 0;
         bottom: 0;
+    }
+    .box {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
     }
 }
