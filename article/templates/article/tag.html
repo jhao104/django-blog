@@ -15,7 +15,7 @@
 
                 <div class="post-description">
                     <p>
-                        {{ post.content |custom_markdown|truncatewords_html:20 }}
+                        {{ post.content |custom_markdown|truncatewords_html:10 }}
                     </p>
                 </div>
                 <a class="pure-button" href="{% url "article:detail" id=post.id %}">Read More >>> </a>
