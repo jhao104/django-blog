@@ -8,13 +8,16 @@
     <title>Jhao104 Blog</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
-    <link rel="stylesheet" href="/static/blog.css">
-    <link rel="stylesheet" href="/static/monokai.css">
+    <link rel="stylesheet" href="/static/css/blog.css">
+    <link rel="stylesheet" href="/static/css/monokai.css">
 
 </head>
 <body>
+<div id="div1" style="position: fixed; top: 0; left: 0; bottom: 0; right: 0; z-index: 100">
+    <canvas id="canvas">Canvas is not supported in your browser.</canvas>
+</div>
 <div id="layout" class="pure-g">
-        <div class="sidebar pure-u-1 pure-u-md-1-5">
+        <div class="sidebar pure-u-1 pure-u-md-1-5" style="z-index: 200">
         <div class="header">
             <h1 class="brand-title"><a href="{% url "home" %}">j_hao blog</a> </h1>
             <h2 class="brand-tagline">	Good memory as bad written.</h2>
@@ -41,8 +44,7 @@
             </nav>
         </div>
     </div>
-
-    <div class="content pure-u-1 pure-u-md-3-5">
+    <div class="content pure-u-1 pure-u-md-3-5" style="z-index: 300">
         <div>
             {% block content %}
             {% endblock %}
@@ -60,8 +62,10 @@
     </div>
     <div class="box pure-u-1 pure-u-md-1-5">
 {#            <p>123</p>#}
+
         </div>
 </div>
 
 </body>
+<script type="text/javascript" src="/static/js/fireworks.js"></script>
 </html>
