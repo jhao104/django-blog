@@ -59,6 +59,7 @@
 .codehilite .vi { color: #f8f8f2; } /* Name.Variable.Instance */
 .codehilite .il { color: #ae81ff; } /* Literal.Number.Integer.Long */
 
+.codehilite { color: #e6db74; } /* Literal.Number.Integer.Long */
 .codehilite .gh { } /* Generic Heading & Diff Header */
 .codehilite .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
 .codehilite .gd { color: #f92672; } /* Generic.Deleted & Diff Deleted */
