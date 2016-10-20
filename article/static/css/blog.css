@@ -95,6 +95,8 @@ h3 {
 
 .post {
     padding-bottom: 2em;
+    border-bottom: 2px dotted #e1e1e1;
+    
 }
 .post-title {
     font-size: 2em;
