@@ -27,6 +27,5 @@ def custom_markdown(value):
     return mark_safe(
         markdown.markdown(value, extensions=['markdown.extensions.fenced_code',
                                              'markdown.extensions.codehilite',
-                                             'markdown.extensions.tables',
-                                             ],
+                                             'markdown.extensions.tables'],
                           safe_mode=True, enable_attributes=False))
