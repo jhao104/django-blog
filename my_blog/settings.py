@@ -15,7 +15,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -23,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'um=5(cxt+a7fz-u5%@@p(^9!!!izgoago=ksj+sn32@p8dtp58'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = True
 
-#ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -52,7 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'blog.urls'
+ROOT_URLCONF = 'my_blog.urls'
 
 TEMPLATES = [
     {
@@ -66,13 +65,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'article.context_processors.sidebar'
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'blog.wsgi.application'
-
+WSGI_APPLICATION = 'my_blog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -88,7 +87,6 @@ DATABASES = {
     }
 }
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -102,15 +100,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, "static"),
-#)
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+DEBUG = True
 
 RET = '6d6afd69cf8c0d7a563b2c8e10adb304'
 DUOSHUO_SHORT_NAME = 'jhao'

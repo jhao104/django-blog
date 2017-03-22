@@ -2,14 +2,15 @@
 使用Django快速搭建博客
 ### 要求
 * Python: 2.X
-* Django: 1.8.2
+* Django: 1.10.x
 * Mysql
 
 ### 示例博客：<http://www.spiderpy.cn/>
 ### 特点
 * 博客文章 markdown 渲染，代码高亮
 * 多说评论支持
-* 页面特效
+* 博客归档
+* 越多排行榜
 
 ### 下载
 ```
