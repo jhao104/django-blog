@@ -1,0 +1,44 @@
+<aside class="col-md-3" id="aside" style="position: fixed; right: 0">
+    <div class="widget widget-recent-posts">
+        <h3 class="widget-title">Rank Posts</h3>
+        <ul>
+            {% for article in rank_article %}
+            <li>
+                <span>
+                <i class="glyphicon glyphicon-list-alt"></i>
+                <a href="{% url "article:detail" id=article.id %}">{{ article.title }}</a>
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{#    <div class="widget widget-archives">#}
+{#        <h3 class="widget-title">Archives</h3>#}
+{#        <ul>#}
+{#            <li>#}
+{#                <a href="#">November 2014</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">September 2014</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">January 2013</a>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
+
+    <div class="widget widget-category">
+        <h3 class="widget-title">Category</h3>
+        <ul>
+           {% for tag in category %}
+           <li>
+               <span>
+                   <i class="glyphicon glyphicon-tags"></i>
+                   <a href="{% url "article:category" id=tag.pk %}">{{ tag.name }}({{ tag.count }})</a>
+               </span>
+
+           </li>
+           {% endfor %}
+        </ul>
+    </div>
+</aside>

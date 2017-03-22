@@ -1,0 +1,51 @@
+{% extends "article/home.html" %}
+{% load custom_markdown %}
+
+{% block content %}
+    <main class="col-md-10" id="article">
+        {% paginate post_list 6 %}
+        {% for post in post_list %}
+            <article class="post post">
+                <header class="entry-header">
+                    <h1 class="entry-title">
+                        <!--<a href="{% url "article:detail" id=post.id %}">{{ post.title }}</a>-->
+                        {{ post.title }}
+                    </h1>
+                    <div class="entry-meta">
+                            <span>
+                                <i class="glyphicon glyphicon-th"></i>
+                                <a class="post-category" href="{% url "article:category" id=post.category_id %}">{{ post.category.name }}</a>
+                            </span>
+
+                            <span>
+                                <i class="glyphicon glyphicon-dashboard"></i>
+                                <a class="post-time" >{{ post.date_time|date:"Y/m/d" }}</a>
+                            </span>
+
+                            <span>
+                                <i class="glyphicon glyphicon-user"></i>
+                                <a class="post-uesr" href="#">{{ post.author.username }}</a>
+                            </span>
+
+                            <span>
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                                <a class="post-view" href="#">{{ post.view }}</a>
+                            </span>
+                    </div>
+                </header>
+                <div class="entry-content clearfix">
+                    <p>&nbsp;&nbsp;{{ post.content |abstract_content |truncatewords_html:25}}</p>
+                    <div class="read-more cl-effect-14">
+                        <a href="{% url "article:detail" id=post.id %}" class="more-link">Continue
+                            reading <span class="meta-nav">→</span></a>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    {% include "article/pagination.html" %}
+    </main>
+{% endblock %}
+
+{% block menu %}
+{% include "article/menu.html" %}
+{% endblock %}

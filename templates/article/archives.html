@@ -1,0 +1,76 @@
+
+{% extends "article/home.html" %}
+{% load custom_markdown %}
+{% block jsblock %}
+<link href="/static/archives/archives.css" rel="stylesheet"/>
+{% endblock %}
+
+
+{% block content %}
+<div class="col-md-10" id="article">
+    <div class="head-warp">
+        <div class="head">
+            <div class="nav-box">
+                <ul>
+                    <li class="cur" style="text-align:left; font-size:20px; ">目前共计{{ count}} 篇笔记, fighting!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="history">
+{#            {% for year, post_list in post_dict.items reversed %}#}
+{#            {% with parent_forloop=forloop.last %}#}
+{#            <div class="history-date">#}
+{#                <ul>#}
+{#                    <h2 {% if forloop.first %}class="first" {% else %}class="date02" {% endif %}><a href="#nogo">{{ year }}年</a></h2>#}
+{#                    {% for post in post_list %}#}
+{#                    <li>#}
+{#                        <h3>{{ post.day }}<span>{{ year }}</span></h3>#}
+{#                        <dl>#}
+{#                            <dt><a href="{% url 'article:detail' id=post.id %}">{{ post.title }}</a>#}
+{#                                <!--<span>升级极速内核到21.0；全新默认界面；新增小窗口播放功能</span>-->#}
+{#                            </dt>#}
+{#                            {% if forloop.last and parent_forloop %} <br><br><br><br> {% endif %}#}
+{#                        </dl>#}
+{#                    </li>#}
+{#                    {% endfor %}#}
+{#                </ul>#}
+{#            </div>#}
+{#            {% endwith %}#}
+{#            {% endfor %}#}
+
+            {% for post_list in post_dict%}
+            {% with parent_forloop=forloop.last %}
+            <div class="history-date">
+                <ul>
+                    <h2 {% if forloop.first %}class="first" {% else %}class="date02" {% endif %}><a href="#nogo">{{ post_list|slice_list:0 }}年</a></h2>
+                    {% for post in post_list|slice_list:1 %}
+                    <li>
+                        <h3>{{ post.day }}<span>{{ year }}</span></h3>
+                        <dl>
+                            <dt><a href="{% url 'article:detail' id=post.id %}">{{ post.title }}</a>
+                                <!--<span>升级极速内核到21.0；全新默认界面；新增小窗口播放功能</span>-->
+                            </dt>
+                            {% if forloop.last and parent_forloop %} <br><br><br><br> {% endif %}
+                        </dl>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endwith %}
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block menu %}
+{% include "article/menu.html" %}
+{% endblock %}
+
+{% block js %}
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+<script src="/static/archives/archives.js"></script>
+{% endblock %}
