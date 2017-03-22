@@ -50,6 +50,7 @@ def archives(request):
         year = date_time.strftime('%Y')
         day = date_time.strftime('%m.%d')
         post_dict[year] = post_dict.get(year, list()) + [{'day': day, 'title': post.title, 'id': post.id}]
+    post_dict = sorted(post_dict.iteritems(), key=lambda d: d[0], reverse=True)
     return render(request, 'article/archives.html', {"title": "j_hao104's blog",
                                                      'count': count,
                                                      "post_dict": post_dict})
