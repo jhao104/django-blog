@@ -1,6 +1,21 @@
+# -*- coding: utf-8 -*-
+"""
+-------------------------------------------------
+   File Name：     views.py  
+   Description :  
+   Author :       JHao
+   date：          2016/11/18
+-------------------------------------------------
+   Change Activity:
+                   2016/11/18: 
+-------------------------------------------------
+"""
+
 # -*- coding: UTF-8 -*-
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, Http404
+
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
+# from django.http import Http404, HttpResponse
+
 from article.models import Article
 
 
@@ -8,47 +23,33 @@ from article.models import Article
 
 def home(request):
     post_list = Article.objects.all()  # 获取全部文章
-    return render(request, 'article/home.html', {"post_list": post_list})
+    return render(request, 'article/articles.html', {"post_list": post_list,
+                                                     "title": "j_hao104's blog"})
 
 
 def detail(request, id):
     post = get_object_or_404(Article, pk=id)
-    return render(request, 'article/post.html', {"post": post})
+    post.viewed()
+    return render(request, 'article/article.html', {"post": post,
+                                                    "title": post.title})
+
+
+def category(request, id):
+    post_list = Article.objects.filter(category_id=id)
+    return render(request, 'article/articles.html', {"post_list": post_list,
+                                                     "title": "j_hao104's blog"})
 
 
 def archives(request):
-    try:
-        post_list = Article.objects.all()
-    except Article.DoesNotExist:
-        raise Http404
-    return render(request, 'article/archives.html', {'post_list': post_list,
-                                                     'error': False})
-
-
-def aboutMe(request):
-    return render(request, 'article/aboutme.html')
-
-
-def searchTag(request, tag):
-    try:
-        post_list = Article.objects.filter(category__iexact=tag)
-    except Article.DoesNotExist:
-        raise Http404
-    return render(request, 'article/tag.html', {"post_list": post_list})
-
-
-def blogSearch(request):
-    if 's' in request.GET:
-        s = request.GET['s']
-        if not s:
-            return render(request, 'article/home.html')
-        else:
-            post_list = Article.objects.filter(title__contains=s)
-            error = False
-            if len(post_list) == 0:
-                error = True
-            return render(request, 'article/archives.html', {'error': error, 'post_list': post_list})
-
-    return redirect('/')
-
-
+    post_list = Article.objects.order_by('-date_time')
+    post_dict = dict()
+    count = 0
+    for post in post_list:
+        count += 1
+        date_time = post.date_time
+        year = date_time.strftime('%Y')
+        day = date_time.strftime('%m.%d')
+        post_dict[year] = post_dict.get(year, list()) + [{'day': day, 'title': post.title, 'id': post.id}]
+    return render(request, 'article/archives.html', {"title": "j_hao104's blog",
+                                                     'count': count,
+                                                     "post_dict": post_dict})

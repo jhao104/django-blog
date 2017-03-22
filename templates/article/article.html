@@ -1,0 +1,57 @@
+{% extends "article/home.html" %}
+{% load custom_markdown %}
+
+
+{% block content %}
+    <div class="col-md-10" id="article">
+        <div class="markdown-body">
+            <article class="post post">
+                <header class="entry-header">
+                    <h1 class="entry-title">
+                        {{ post.title }}
+                    </h1>
+                    <div class="entry-meta">
+                        <span>
+                            <i class="glyphicon glyphicon-th"></i>
+                            <a class="post-category" href="{% url "article:category" id=post.category_id %}">{{ post.category.name }}</a>
+                        </span>
+
+                        <span>
+                            <i class="glyphicon glyphicon-dashboard"></i>
+                            <a class="post-time" >{{ post.date_time|date:"Y/m/d" }}</a>
+                        </span>
+
+
+                        <span>
+                                <i class="glyphicon glyphicon-user"></i>
+                                <a class="post-uesr" href="#">{{ post.author.username }}</a>
+                            </span>
+
+                        <span>
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                            <a class="post-view">{{ post.view }}</a>
+                        </span>
+                    </div>
+                </header>
+                <div class="post-content">
+                    <div class="BlogAnchor">
+                        <p>
+                            <b id="AnchorContentToggle" title="收起" style="cursor:pointer;">目录[-]</b>
+                        </p>
+                        <div class="AnchorContent" id="AnchorContent"></div>
+                    </div>
+                    <p>&nbsp;&nbsp;{{ post.content | custom_markdown }}</p>
+                </div>
+            </article>
+        </div>
+        {% include "article/duoshuo.html" %}
+    </div>
+{% endblock %}
+
+{% block menu %}
+    {% include "article/menu.html" %}
+{% endblock %}
+
+{% block jsfunc %}
+GenerateContentList();
+{% endblock %}

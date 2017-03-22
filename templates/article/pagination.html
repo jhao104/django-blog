@@ -1,0 +1,45 @@
+<div id="pagination" class="entry-page">
+    <ul class="pagination ">
+    {% if post_list.has_previous %}
+        <li><a href="?page={{ post_list.previous_page_number }}">上一页</a></li>
+    {% else %}
+        <li class="disabled"><a href="#">上一页</a></li>
+    {% endif %}
+
+    {% if first_page == current_page %}
+        <li class="active"><a href="#"> 1 </a></li>
+    {% else %}
+        <li><a href="?page=1">1</a><li>
+    {% endif %}
+
+    {% if pages_first > 2 %}
+        <li><a href="#">...</a><li>
+    {% endif %}
+
+    {% for page in pages %}
+        {% if page == current_page %}
+            <li class="active"><a href="#"> {{ page }} </a></li>
+        {% else %}
+            <li><a href="?page={{ page }}"> {{ page }} </a></li>
+        {% endif %}
+    {% endfor %}
+
+    {% if pages_last < last_page %}
+        <li><a href="#">...</a><li>
+    {% endif %}
+
+    {% if last_page != 1 %}
+        {% if last_page == current_page %}
+            <li class="active"><a href="#" >{{ last_page }}</a><li>
+        {% else %}
+            <li><a href="?page={{ last_page }}">{{ last_page }}</a><li>
+        {% endif %}
+    {% endif %}
+
+    {% if post_list.has_next %}
+        <li><a href="?page={{ post_list.next_page_number }}">下一页</a><li>
+    {% else %}
+        <li class="disabled"><a href="#">下一页</a></li>
+    {% endif %}
+    </ul>
+</div>

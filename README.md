@@ -5,7 +5,7 @@
 * Django: 1.8.2
 * Mysql
 
-### 示例博客：<http://pyspider.site:8000/>（国外服务器，较慢）
+### 示例博客：<http://www.spiderpy.cn/>
 ### 特点
 * 博客文章 markdown 渲染，代码高亮
 * 多说评论支持
