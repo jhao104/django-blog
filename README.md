@@ -5,7 +5,7 @@
 * Django: 1.10.x
 * Mysql
 
-### 示例博客：<http://www.spiderpy.cn/>
+### 示例博客：<http://www.spiderpy.cn/blog>
 ### 特点
 * 博客文章 markdown 渲染，代码高亮
 * 多说评论支持
