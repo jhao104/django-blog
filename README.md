@@ -26,3 +26,17 @@ python manage.py migrate
 python manage.py runserver
 ```
 浏览器中打开<http://127.0.0.1:8000/>即可访问
+
+### 博客页面
+
+* 首页
+
+![首页](http://ofcf9jxzt.bkt.clouddn.com/django_blog/git/20170415/1.png)
+
+* 博客详情
+
+![博客详情](http://ofcf9jxzt.bkt.clouddn.com/django_blog/git/20170415/2.png)
+
+* 归档
+
+![归档](http://ofcf9jxzt.bkt.clouddn.com/django_blog/git/20170415/3.png)
