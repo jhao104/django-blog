@@ -1,0 +1,125 @@
+{% extends "blog/base.html" %}
+{% load custom_filter %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/markdown.css">
+{% endblock %}
+
+{% block content %}
+
+    <section class="mysection">
+        <article>
+            <h3 class="arc-title index-title">{{ article.title }}</h3>
+            <div class="post-line bg-color">
+                <ul>
+                    <li><a title="{{ article.author }}发表于{{ article.date_time }}"><i class="el-time"></i>
+                        <time>{{ article.date_time }}</time>
+                    </a></li>
+                    <li><a href="#"><i class="el-user"></i>{{ article.author }}</a></li>
+                    <li><a href="#Coon" title="转到评论"><i class="el-comment"></i>{{ article.comment }}条</a></li>
+                    <li><a title="已有 {{ article.view }} 次浏览"><i class="el-eye-open"></i>{{ article.view }}</a></li>
+                </ul>
+            </div>
+
+            <!--文章正文-->
+            <div class="article-content bg-color markdown-body">
+                <div class="post-content">
+                    <div class="BlogAnchor" style="text-indent: 20px; font-size: 14px; margin-bottom: 30px">
+                        <p>
+                            <b id="AnchorContentToggle" title="收起" style="cursor:pointer;">目录[-]</b>
+                        </p>
+                        <div class="AnchorContent" id="AnchorContent"></div>
+                    </div>
+                    {{ article.content|custom_markdown }}
+                </div>
+            </div>
+                <!--分享-->
+                <div class="article-fx"><a class="fx-btn img-circle" href="javascript:;">分享</a>
+                    <div class="bd-fx arc-bdfx">
+                        <i class="el-remove fx-close"></i>
+                        <ul class="bdsharebuttonbox">
+                            <li><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></li>
+                            <li><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></li>
+                            <li><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></li>
+                            <li><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a></li>
+                        </ul>
+                        <script>window._bd_share_config = {
+                            "common": {
+                                "bdSnsKey": {},
+                                "bdText": "",
+                                "bdMini": "2",
+                                "bdMiniList": false,
+                                "bdPic": "",
+                                "bdStyle": "1",
+                                "bdSize": "32"
+                            }, "share": {}
+                        };
+                        with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+                    </div>
+                </div>
+                <!--END 分享-->
+                <hr>
+
+                <!--标签-->
+                <div class="article_tag">
+                    <ul>
+                        <li><a href="{% url "blog:article" pk=article.category_id %}"
+                               title="归类：{{ article.category }}">{{ article.category }}</a></li>
+                        {% for tag in article.tag.all %}
+                            <li><a href="#" title="标签：{{ tag.tag_name }} ">{{ tag.tag_name }}</a>&nbsp;</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+        </article>
+
+        <!--评论表单-->
+        <h3 class="form-btn blue-text"><a href="javascript:;"><i class="el-edit"></i>我要留言 / 展开表单</a></h3>
+        <div id="Coon" class="form-zd form-in">
+            <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+            <script>
+                var cloudTieConfig = {
+                    url: "{{ article.sourceUrl }}",
+                    sourceId: "{{ article.id }}",
+                    productKey: "0078b35005ba4b3da6403eb8d16b0bcb",
+                    target: "cloud-tie-wrapper"
+                };
+            </script>
+            <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+        </div>
+    </section>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script>
+        function GenerateContentList() {
+            $(".post-content").find("h2,h3").each(function (i, item) {
+                var tag = $(item).get(0).localName;
+                $(item).attr("id", "wow" + i);
+                $("#AnchorContent").append('<li><a class="new' + tag + ' anchor-link"  href="#wow' + i + '">' + $(this).text() + '</a></li>');
+                $(".newh2").css("margin-left", 0);
+                $(".newh3").css("margin-left", 20);
+                $(".newh4").css("margin-left", 40);
+                $(".newh5").css("margin-left", 60);
+                $(".newh6").css("margin-left", 80);
+            });
+            $("#AnchorContentToggle").click(function () {
+                var text = $(this).html();
+                if (text == "目录[-]") {
+                    $(this).html("目录[+]");
+                    $(this).attr({"title": "展开"});
+                } else {
+                    $(this).html("目录[-]");
+                    $(this).attr({"title": "收起"});
+                }
+                $("#AnchorContent").toggle();
+            });
+        }
+    GenerateContentList()
+    </script>
+{% endblock %}
