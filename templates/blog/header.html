@@ -45,9 +45,9 @@
         <div class="mob-menu">
             <!--手机顶部搜索-->
             <div class="search ">
-                <form action="/Search/" method="get">
+                <form action="{% url "blog:search" %}" method="get">
                     <div class="search-index">
-                        <input name="s" type="text" placeholder="请输入关键字" onfocus="this.placeholder=''"
+                        <input name="name" type="text" placeholder="请输入关键字" onfocus="this.placeholder=''"
                                onblur="this.placeholder='请输入关键字'"/>
                         <i class="el-search"><input value=" " type="submit"/></i>
                     </div>
