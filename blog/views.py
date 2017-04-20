@@ -92,14 +92,13 @@ def detail(request, pk):
                                                 "article": article})
 
 
-def search(request, key):
+def search(request):
     """
     搜索
     :param request:
-    :param key:
     :return:
     """
+    key = request.GET['key']
     article_list = Article.objects.filter(title__contains=key)
-    return render(request, 'blog/index.html', {"html_title": u"Memory & Write",
-                                               "article_list": article_list,
-                                               "source_id": "index"})
+    return render(request, 'blog/search.html',
+                  {"html_title": u"Memory & Write", "article_list": article_list, "source_id": "index", "key": key})

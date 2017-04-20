@@ -62,16 +62,16 @@
             </li>
 
             <li><i class="el-calendar"></i>历史今天：
-                <iframe src="http://www1.todayonhistory.com/code/6.html?w=250&h=20&bky=dotted&bks=0&fs=14&fc=#565656&hg=14&ie=0&xhx=none&sd=100&px=3&len=0&sk=1&n=0"
+                <iframe src="http://www1.todayonhistory.com/code/6.html?w=250&h=20&bky=dotted&bks=0&fs=14&fc=#565656&hg=14&ie=0&xhx=none&sd=300&px=3&len=0&sk=1&n=0"
                         width="250" height="15" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
             </li>
         </ul>
     </div>
     <!--搜索-->
     <div class="search animation-div">
-        <form action="/Search/" method="get">
+        <form action="{% url "blog:search" %}" method="get">
             <div class="search-index">
-                <input name="s" type="text" placeholder="请输入关键字" onfocus="this.placeholder=''"
+                <input name="key" type="text" placeholder="请输入关键字" onfocus="this.placeholder=''"
                        onblur="this.placeholder='请输入关键字'"/>
                 <i class="el-search"><input value=" " type="submit"/></i>
             </div>
