@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^get_comment/$', views.GetComment, name='get_comment'),
     url(r'^detail/(?P<pk>\d+)$', views.detail, name='detail'),
     url(r'^search/$', views.search, name='search'),
+    url(r'^tag/(?P<name>.*?)$', views.tag, name='tag'),
     url(r'.*?$', views.Index, name='index'),
 ]

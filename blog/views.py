@@ -101,4 +101,17 @@ def search(request):
     key = request.GET['key']
     article_list = Article.objects.filter(title__contains=key)
     return render(request, 'blog/search.html',
-                  {"html_title": u"Memory & Write", "article_list": article_list, "source_id": "index", "key": key})
+                  {"html_title": u"搜索'{}'".format(key), "article_list": article_list, "key": key})
+
+
+def tag(request, name):
+    """
+    标签
+    :param request:
+    :param name
+    :return:
+    """
+    article_list = Article.objects.filter(tag__tag_name=name)
+    return render(request, 'blog/tag.html', {"html_title": u"{}标签".format(name),
+                                             "article_list": article_list,
+                                             "tag": name})

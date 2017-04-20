@@ -114,7 +114,7 @@
         </h4>
         <ul id="3dcloud">
             {% for tag in tag_list %}
-                <li><a href="#" title="标签：{{ tag.tag_name }} ">{{ tag.tag_name }}</a></li>
+                <li><a href="{% url "blog:tag" name=tag.tag_name %}" title="标签：{{ tag.tag_name }} ">{{ tag.tag_name }}</a></li>
             {% endfor %}
         </ul>
     </div>
