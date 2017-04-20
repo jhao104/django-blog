@@ -88,7 +88,7 @@
                 <li>
                     <div class="sd-name">
                         <span><i class="el-book"></i>{{ comment.title }}</span>
-                        <a class="blue-text" href="{% url "blog:detail" pk=comment.source_id %}" title="{{ comment.comment }}">{{ comment.comment }}</a>
+                        <a class="blue-text" href="{{ comment.url }}" title="{{ comment.comment }}">{{ comment.comment }}</a>
                         <span style="text-align: right">— &nbsp;<i class="el-user"></i>{{ comment.user_name }}</span>
                     </div>
                 </li>
