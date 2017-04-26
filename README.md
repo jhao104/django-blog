@@ -27,7 +27,8 @@ git clone git@github.com:jhao104/django-blog.git
 ### 安装
 ```
 pip install -r requirements.txt  #安装所有依赖
-setting.py配置自己的数据库和网易云跟帖
+setting.py配置自己的数据库
+配置网易云跟帖：到https://manage.gentie.163.com/注册站点,将blog/models.py中的“http://www.spiderpy.cn”换成你注册的站点地址,将templates/message.html中的productKey换成你的APP KEY。否则无法正常显示跟帖
 python manage.py makemigrations blog
 python manage.py migrate
 python manage.py runserver
