@@ -40,7 +40,7 @@ class Article(models.Model):
         return self.title
 
     def sourceUrl(self):
-        source_url = "http://www.spiderpy.cn" + '/blog/detail/{id}'.format(id=self.pk)
+        source_url = settings.HOST + '/blog/detail/{id}'.format(id=self.pk)
         return source_url  # 给网易云跟帖使用
 
     def viewed(self):

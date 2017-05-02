@@ -3,7 +3,8 @@
 
 import json
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
+from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from blog.models import Article, Category, Comment
 
@@ -56,7 +57,7 @@ def Link(request):
 
 def Message(request):
     return render(request, 'blog/message_board.html', {"html_title": "留言",
-                                                       "source_url": "http://www.spiderpy.cn/blog/message"})
+                                                       "source_url": settings.HOST + request.path})
 
 
 @csrf_exempt
@@ -72,6 +73,8 @@ def GetComment(request):
     title = data.get('title')
     url = data.get('url')
     source_id = data.get('sourceId')
+    if source_id:
+        url = reverse("blog:detail", kwargs={'pk': 1})
     comments = data.get('comments')[0]
     content = comments.get('content')
     user = comments.get('user').get('nickname')
@@ -89,7 +92,8 @@ def detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     article.viewed()
     return render(request, 'blog/detail.html', {"html_title": article.title,
-                                                "article": article})
+                                                "article": article,
+                                                "source_url": settings.HOST + request.path})
 
 
 def search(request):
