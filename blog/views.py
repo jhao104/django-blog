@@ -75,6 +75,8 @@ def GetComment(request):
     source_id = data.get('sourceId')
     if source_id:
         url = reverse("blog:detail", kwargs={'pk': 1})
+        article = Article.objects.get(pk=source_id)
+        article.commenced()
     comments = data.get('comments')[0]
     content = comments.get('content')
     user = comments.get('user').get('nickname')
