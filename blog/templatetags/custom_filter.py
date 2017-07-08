@@ -12,6 +12,7 @@
 """
 __author__ = 'JHao'
 
+import re
 import markdown
 from django import template
 from django.template.defaultfilters import stringfilter
@@ -29,10 +30,21 @@ def slice_list(value, index):
 @register.filter(is_safe=True)
 @stringfilter
 def custom_markdown(value):
-    return mark_safe(markdown.markdown(value, extensions=['markdown.extensions.fenced_code',
-                                                          'markdown.extensions.codehilite',
-                                                          'markdown.extensions.tables'],
-                                       safe_mode=True, enable_attributes=False))
+    content = mark_safe(markdown.markdown(value, extensions=['markdown.extensions.fenced_code',
+                                                             # 'markdown.extensions.codehilite',
+                                                             'markdown.extensions.tables'],
+                                          safe_mode=True, enable_attributes=False))
+
+    # SyntaxHighlighter 代码高亮查件 需要将所有的
+    # markdown转换的代码:<pre><code class="python">import *** </code></pre>
+    # 转换为
+    # <pre class="brush: python;">import *** </pre>
+    code_list = re.findall(r'<pre><code class="(.*)">', content, re.M)
+    for code in code_list:
+        content = re.sub(r'<pre><code class="(.*)">', '<pre name="code" class="brush: {code};">'.format(code=code.lower()), content, 1)
+    content = re.sub(r'<pre><code>', '<pre class="brush: python;">', content, 1)
+    content = re.sub(r'</code></pre>', '</pre>', content)
+    return content
 
 
 @register.simple_tag(takes_context=True)

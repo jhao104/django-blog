@@ -2,7 +2,32 @@
 {% load custom_filter %}
 
 {% block css %}
-    <link rel="stylesheet" href="/static/css/markdown.css">
+{#    <link rel="stylesheet" href="/static/css/markdown.css">#}
+    <script type="text/javascript" src="/static/highlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushBash.js"></script>
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushCSharp.js"></script>
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushCss.js"></script>
+{#	<script type="text/javascript" src="/static/highlighter/scripts/shBrushDelphi.js"></script>#}
+{#	<script type="text/javascript" src="/static/highlighter/scripts/shBrushDiff.js"></script>#}
+{#	<script type="text/javascript" src="/static/highlighter/scripts/shBrushGroovy.js"></script>#}
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushJava.js"></script>
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushPhp.js"></script>
+{#	<script type="text/javascript" src="/static/highlighter/scripts/shBrushPlain.js"></script>#}
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushPython.js"></script>
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushRuby.js"></script>
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushScala.js"></script>
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushSql.js"></script>
+{#	<script type="text/javascript" src="/static/highlighter/scripts/shBrushVb.js"></script>#}
+	<script type="text/javascript" src="/static/highlighter/scripts/shBrushXml.js"></script>
+	<link type="text/css" rel="stylesheet" href="/static/highlighter/styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="/static/highlighter/styles/shThemeDjango.css"/>
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = '/highlighter/scripts/clipboard.swf';
+        SyntaxHighlighter.config.bloggerMode = true;
+		SyntaxHighlighter.all();
+	</script>
 {% endblock %}
 
 {% block content %}
@@ -30,7 +55,7 @@
                         </p>
                         <div class="AnchorContent" id="AnchorContent"></div>
                     </div>
-                    {{ article.content|custom_markdown }}
+                    {{ article.content|custom_markdown|safe }}
                 </div>
             </div>
                 <!--分享-->
@@ -121,5 +146,21 @@
             });
         }
     GenerateContentList()
+
+        SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+        SyntaxHighlighter.config.strings = {
+            expandSource : '展开代码',
+            viewSource : '查看代码',
+            copyToClipboard : '复制代码',
+            copyToClipboardConfirmation : '代码复制成功',
+            print : '打印',
+            help: '?',
+            alert: '语法高亮\n\n',
+            noBrush: '不能找到刷子: ',
+            brushNotHtmlScript: '刷子没有配置html-script选项',
+            aboutDialog: '<div></div>'
+        };
+        SyntaxHighlighter.all();
+
     </script>
 {% endblock %}
