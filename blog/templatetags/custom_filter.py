@@ -42,7 +42,7 @@ def custom_markdown(value):
     code_list = re.findall(r'<pre><code class="(.*)">', content, re.M)
     for code in code_list:
         content = re.sub(r'<pre><code class="(.*)">', '<pre name="code" class="brush: {code};">'.format(code=code.lower()), content, 1)
-    content = re.sub(r'<pre><code>', '<pre class="brush: python;">', content, 1)
+    content = re.sub(r'<pre>\s?<code>', '<pre class="brush: python;">', content)
     content = re.sub(r'</code></pre>', '</pre>', content)
     return content
 
