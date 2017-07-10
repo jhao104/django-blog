@@ -28,6 +28,8 @@
         SyntaxHighlighter.config.bloggerMode = true;
 		SyntaxHighlighter.all();
 	</script>
+
+
 {% endblock %}
 
 {% block content %}
@@ -83,7 +85,13 @@
                     </div>
                 </div>
                 <!--END 分享-->
+                <div class="cyReward " style="text-align: center">
+                    <div id="cyReward" role="cylabs" data-use="reward" sid="{{ source_id }}"></div>
+
+                </div>
+
                 <hr>
+
 
                 <!--标签-->
                 <div class="article_tag">
@@ -96,10 +104,18 @@
                     </ul>
                 </div>
 
+                <div class="cyEmoji" style="text-align: center">
+                    <div id="cyEmoji" role="cylabs" data-use="emoji" sid="{{ source_id }}"></div>
+                </div>
+
         </article>
 
         <!--评论表单-->
         {% include "blog/message.html" %}
+
+
+        <script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt6A5N47"></script>
     </section>
 
 

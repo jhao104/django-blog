@@ -63,18 +63,17 @@ def Message(request):
 @csrf_exempt
 def GetComment(request):
     """
-    接收网易云跟帖评论消息， post方式回推
+    接收畅言的评论回推， post方式回推
     :param request:
     :return:
     """
     arg = request.POST
     data = arg.get('data')
-    data = json.loads(data)[0]
+    data = json.loads(data)
     title = data.get('title')
     url = data.get('url')
-    source_id = data.get('sourceId')
-    if source_id:
-        url = reverse("blog:detail", kwargs={'pk': 1})
+    source_id = data.get('sourceid')
+    if source_id not in ['message']:
         article = Article.objects.get(pk=source_id)
         article.commenced()
     comments = data.get('comments')[0]
