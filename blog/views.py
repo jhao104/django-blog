@@ -57,7 +57,7 @@ def Link(request):
 
 def Message(request):
     return render(request, 'blog/message_board.html', {"html_title": "留言",
-                                                       "source_url": settings.HOST + request.path})
+                                                       "source_id": "message"})
 
 
 @csrf_exempt
@@ -95,7 +95,7 @@ def detail(request, pk):
     article.viewed()
     return render(request, 'blog/detail.html', {"html_title": article.title,
                                                 "article": article,
-                                                "source_url": settings.HOST + request.path})
+                                                "source_id": article.id})
 
 
 def search(request):

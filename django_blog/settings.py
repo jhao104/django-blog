@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-HOST = "http://www.spiderpy.cn"
+# HOST = "http://www.spiderpy.cn"
 
 # Application definition
 
@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'django_blog',
         'USER': 'root',
         'PASSWORD': '5849312',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '3306'
     }
 }
