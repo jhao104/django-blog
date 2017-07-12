@@ -28,7 +28,7 @@ git clone git@github.com:jhao104/django-blog.git
 ```
 pip install -r requirements.txt  #安装所有依赖
 setting.py配置自己的数据库
-配置网易云跟帖：到https://manage.gentie.163.com/注册站点,将setting.py中HOST(http://www.spiderpy.cn)换成你注册的站点地址,将templates/message.html中的productKey换成你的APP KEY。否则无法正常显示跟帖
+配置畅言：到http://changyan.kuaizhan.com/注册站点,将templates/message.html中js部分换成你在畅言中生成的js。
 python manage.py makemigrations blog
 python manage.py migrate
 python manage.py runserver
