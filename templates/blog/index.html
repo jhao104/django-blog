@@ -65,6 +65,39 @@
         </ul>
         <!--列表结束-->
         </div>
+
+    <div class="arclist">
+        <h4 class="index-title homeh4"><a href=""><i class="el-certificate"></i>最热文章
+            <small>Hot Article</small>
+        </a></h4>
+        <!--列表开始-->
+        <ul>
+            {% for article in article_rank %}
+            <li id="Hot">
+                <div class="arcimg">
+                    <img src="{{ article.picture }}" alt="{{ article.title }}" title="{{ article.title }}"/>
+                </div>
+                <div class="arc-right">
+                    <h4 class="blue-text"><a href="{% url "blog:detail" pk=article.id %}" title="{{ article.title }}">{{ article.title }}</a></h4>
+                    <p>{{ article.digest }}</p>
+                    <ul>
+                        <li><a title="{{ article.author }}{{ article.date_time }} 发表 "><i
+                                class="el-time"></i> {{ article.date_time }}</a></li>
+                        <li><a href="#" title="作者： {{ article.author }}"><i
+                                class="el-user"></i>{{ article.author }}</a></li>
+                        <li><a href="#" title="已有 {{ article.comment }} 条评论"><i
+                                class="el-comment"> {{ article.comment }}</i></a>
+                        </li>
+                        <li><a title="已有 {{ article.view }} 次浏览"><i class="el-eye-open"></i>{{ article.view }}
+                        </a></li>
+                        <li><a href="#" title="查看分类"><i class="el-th-list"></i>{{ article.category }}</a></li>
+                    </ul>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <!--列表结束-->
+        </div>
 </section>
 
 {% endblock %}
