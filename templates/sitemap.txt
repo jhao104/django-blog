@@ -1,16 +1,3 @@
-http://www.spiderpy.cn/blog/tag/Python/
-http://www.spiderpy.cn/blog/tag/Python标准库/
-http://www.spiderpy.cn/blog/tag/爬虫/
-http://www.spiderpy.cn/blog/tag/Linux/
-http://www.spiderpy.cn/blog/tag/Ngnix/
-http://www.spiderpy.cn/blog/tag/PyCharm/
-http://www.spiderpy.cn/blog/tag/PyCharm/
-http://www.spiderpy.cn/blog/tag/MongoDB/
-http://www.spiderpy.cn/blog/tag/SSDB/
-http://www.spiderpy.cn/blog/tag/PyCharm/
-http://www.spiderpy.cn/blog/tag/Django/
-http://www.spiderpy.cn/blog/tag/算法/
-http://www.spiderpy.cn/blog/archive/
 http://www.spiderpy.cn/blog/detail/1/
 http://www.spiderpy.cn/blog/detail/2/
 http://www.spiderpy.cn/blog/detail/3/

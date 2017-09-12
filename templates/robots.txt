@@ -1,5 +1,4 @@
 User-agent: *
-Allow: /blog
 Allow: /blog/detail/
 Allow: /blog/tag/
 Allow: /blog/article/
