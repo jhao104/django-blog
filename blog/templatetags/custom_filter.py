@@ -35,15 +35,16 @@ def custom_markdown(value):
                                                              'markdown.extensions.tables'],
                                           safe_mode=True, enable_attributes=False))
 
-    # SyntaxHighlighter 代码高亮查件 需要将所有的
+    # Prism 代码高亮查件 需要将所有的
     # markdown转换的代码:<pre><code class="python">import *** </code></pre>
     # 转换为
-    # <pre class="brush: python;">import *** </pre>
+    # <pre class="line-numbers"><code class="language-python">import *** </code></pre>
     code_list = re.findall(r'<pre><code class="(.*)">', content, re.M)
     for code in code_list:
-        content = re.sub(r'<pre><code class="(.*)">', '<pre name="code" class="brush: {code};">'.format(code=code.lower()), content, 1)
-    content = re.sub(r'<pre>\s?<code>', '<pre class="brush: python;">', content)
-    content = re.sub(r'</code></pre>', '</pre>', content)
+        content = re.sub(r'<pre><code class="(.*)">',
+                         '<pre class="line-numbers"><code class="language-{code}">'.format(code=code.lower()), content,
+                         1)
+    content = re.sub(r'<pre>\s?<code>', '<pre class="line-numbers"><code class="language-python">', content)
     return content
 
 
