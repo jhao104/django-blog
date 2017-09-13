@@ -1,4 +1,9 @@
 {% extends "blog/base.html" %}
+
+{% block title %}
+    <title>搜索:{{ key }} - 烂笔头</title>
+{% endblock %}
+
 {% load custom_filter %}
 {% block content %}
     {% paginate article_list 8 %}

@@ -1,5 +1,10 @@
 {% extends "blog/base.html" %}
 {% load custom_filter %}
+
+{% block title %}
+    <title>标签：{{ tag }} - 烂笔头</title>
+{% endblock %}
+
 {% block content %}
     {% paginate article_list 8 %}
     <section class="mysection">

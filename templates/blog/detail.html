@@ -1,6 +1,10 @@
 {% extends "blog/base.html" %}
 {% load custom_filter %}
 
+{% block title %}
+    <title>{{ article.title }} - 烂笔头</title>
+{% endblock %}
+
 {% block meta %}
     <meta name="keywords" content="{{ article.title }},{% for tag in article.tag.all %}{{ tag }},{% endfor %}{{ article.category }}"/>
     <meta name="description" content="{{ article.digest|safe }}"/>

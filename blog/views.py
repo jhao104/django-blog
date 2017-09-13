@@ -16,8 +16,7 @@ def Index(request):
     :return:
     """
     article_list = Article.objects.all().order_by('-date_time')[0:5]
-    return render(request, 'blog/index.html', {"html_title": u"Memory & Write",
-                                               "article_list": article_list,
+    return render(request, 'blog/index.html', {"article_list": article_list,
                                                "source_id": "index"})
 
 
@@ -39,25 +38,24 @@ def Articles(request, pk):
         category = u''
     return render(request, 'blog/articles.html', {"article_list": article_list,
                                                   "category": category,
-                                                  "html_title": "博客列表"})
+                                                  })
 
 
 def About(request):
-    return render(request, 'blog/about.html', {"html_title": "关于"})
+    return render(request, 'blog/about.html')
 
 
 def archive(request):
     article_list = Article.objects.order_by('-date_time')
-    return render(request, 'blog/archive.html', {"html_title": "归档", "article_list": article_list})
+    return render(request, 'blog/archive.html', {"article_list": article_list})
 
 
 def Link(request):
-    return render(request, 'blog/link.html', {"html_title": "链接"})
+    return render(request, 'blog/link.html')
 
 
 def Message(request):
-    return render(request, 'blog/message_board.html', {"html_title": "留言",
-                                                       "source_id": "message"})
+    return render(request, 'blog/message_board.html', {"source_id": "message"})
 
 
 @csrf_exempt
@@ -92,8 +90,7 @@ def detail(request, pk):
     """
     article = get_object_or_404(Article, pk=pk)
     article.viewed()
-    return render(request, 'blog/detail.html', {"html_title": article.title,
-                                                "article": article,
+    return render(request, 'blog/detail.html', {"article": article,
                                                 "source_id": article.id})
 
 
@@ -106,7 +103,7 @@ def search(request):
     key = request.GET['key']
     article_list = Article.objects.filter(title__contains=key)
     return render(request, 'blog/search.html',
-                  {"html_title": u"搜索'{}'".format(key), "article_list": article_list, "key": key})
+                  {"article_list": article_list, "key": key})
 
 
 def tag(request, name):
@@ -117,6 +114,5 @@ def tag(request, name):
     :return:
     """
     article_list = Article.objects.filter(tag__tag_name=name)
-    return render(request, 'blog/tag.html', {"html_title": u"{}标签".format(name),
-                                             "article_list": article_list,
+    return render(request, 'blog/tag.html', {"article_list": article_list,
                                              "tag": name})
