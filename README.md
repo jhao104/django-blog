@@ -40,6 +40,17 @@ python manage.py runserver
 
 浏览器中打开<http://127.0.0.1:8000/>即可访问
 
+## Screen Shots
+
+* 首页
+![首页](./doc/image/image1.png)
+
+* 文章列表
+![文章列表](./doc/image/image2.png)
+
+* 文章内容
+![文章内容](./doc/image/image3.png)
+
 ## 历史版本
 
 * [黑白简约版](https://github.com/jhao104/django-blog/tree/v1.0)
