@@ -6,7 +6,8 @@
 {% endblock %}
 
 {% block meta %}
-    <meta name="keywords" content="{{ article.title }},{% for tag in article.tag.all %}{{ tag }},{% endfor %}{{ article.category }}"/>
+    <meta name="keywords"
+          content="{{ article.title }},{% for tag in article.tag.all %}{{ tag }},{% endfor %}{{ article.category }}"/>
     <meta name="description" content="{{ article.digest|safe }}"/>
 {% endblock %}
 
@@ -15,6 +16,15 @@
     <link rel="stylesheet" href="/static/prism/prism.css">
 
     <script src="/static/prism/prism.js" charset="utf-8"></script>
+
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$', '$']]},
+            messageStyle: "none"
+        });
+    </script>
+
 {% endblock %}
 
 {% block content %}
@@ -45,53 +55,54 @@
                     {{ article.content|custom_markdown|safe }}
                 </div>
             </div>
-                <!--分享-->
-                <div class="article-fx"><a class="fx-btn img-circle" href="javascript:;">分享</a>
-                    <div class="bd-fx arc-bdfx">
-                        <i class="el-remove fx-close"></i>
-                        <ul class="bdsharebuttonbox">
-                            <li><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></li>
-                            <li><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></li>
-                            <li><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></li>
-                            <li><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a></li>
-                        </ul>
-                        <script>window._bd_share_config = {
-                            "common": {
-                                "bdSnsKey": {},
-                                "bdText": "",
-                                "bdMini": "2",
-                                "bdMiniList": false,
-                                "bdPic": "",
-                                "bdStyle": "1",
-                                "bdSize": "32"
-                            }, "share": {}
-                        };
-                        with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
-                    </div>
-                </div>
-                <!--END 分享-->
-                <div class="cyReward " style="text-align: center">
-                    <div id="cyReward" role="cylabs" data-use="reward" sid="{{ source_id }}"></div>
-
-                </div>
-
-                <hr>
-
-
-                <!--标签-->
-                <div class="article_tag">
-                    <ul>
-                        <li><a href="{% url "blog:article" pk=article.category_id %}"
-                               title="归类：{{ article.category }}">{{ article.category }}</a></li>
-                        {% for tag in article.tag.all %}
-                            <li><a href="{% url "blog:tag" name=tag.tag_name %}" title="标签：{{ tag.tag_name }} ">{{ tag.tag_name }}</a>&nbsp;</li>
-                        {% endfor %}
+            <!--分享-->
+            <div class="article-fx"><a class="fx-btn img-circle" href="javascript:;">分享</a>
+                <div class="bd-fx arc-bdfx">
+                    <i class="el-remove fx-close"></i>
+                    <ul class="bdsharebuttonbox">
+                        <li><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></li>
+                        <li><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></li>
+                        <li><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></li>
+                        <li><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a></li>
                     </ul>
+                    <script>window._bd_share_config = {
+                        "common": {
+                            "bdSnsKey": {},
+                            "bdText": "",
+                            "bdMini": "2",
+                            "bdMiniList": false,
+                            "bdPic": "",
+                            "bdStyle": "1",
+                            "bdSize": "32"
+                        }, "share": {}
+                    };
+                    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
                 </div>
+            </div>
+            <!--END 分享-->
+            <div class="cyReward " style="text-align: center">
+                <div id="cyReward" role="cylabs" data-use="reward" sid="{{ source_id }}"></div>
 
-                <div class="cyEmoji" style="text-align: center">
-                    <div id="cyEmoji" role="cylabs" data-use="emoji" sid="{{ source_id }}"></div>
-                </div>
+            </div>
+
+            <hr>
+
+
+            <!--标签-->
+            <div class="article_tag">
+                <ul>
+                    <li><a href="{% url "blog:article" pk=article.category_id %}"
+                           title="归类：{{ article.category }}">{{ article.category }}</a></li>
+                    {% for tag in article.tag.all %}
+                        <li><a href="{% url "blog:tag" name=tag.tag_name %}"
+                               title="标签：{{ tag.tag_name }} ">{{ tag.tag_name }}</a>&nbsp;</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="cyEmoji" style="text-align: center">
+                <div id="cyEmoji" role="cylabs" data-use="emoji" sid="{{ source_id }}"></div>
+            </div>
 
         </article>
 
@@ -100,7 +111,8 @@
 
 
         <script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
-        <script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt6A5N47"></script>
+        <script type="text/javascript" charset="utf-8"
+                src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt6A5N47"></script>
     </div>
 
 
@@ -133,7 +145,7 @@
                 $("#AnchorContent").toggle();
             });
         }
-    GenerateContentList();
-
+        GenerateContentList();
     </script>
+
 {% endblock %}
