@@ -38,6 +38,17 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+### 使用
+
+```python
+# 初始化用户名密码
+python manage.py createsuperuser
+# 按照提示输入用户名、邮箱、密码即可
+# 登录后台 编辑类型、标签、发布文章等
+http://ip:port/admin
+
+```
+
 浏览器中打开<http://127.0.0.1:8000/>即可访问
 
 ## Screen Shots
