@@ -54,10 +54,10 @@
             </div>
             <ul>
 
-                <li {% if current_page == 1 %}class="active"{% endif %}><a href="?page=1">首页</a></li>
-                <li {% if current_page >= 2 %} {% else %}class="active"{% endif %}><a href="?page={{ current_page|add:-1 }}">上一页</a></li>
-                <li {% if current_page < last_page %} {% else %}class="active"{% endif %}><a href="?page={{ current_page|add:1 }}">下一页</a></li>
-                <li {% if current_page == last_page %}class="active"{% endif %}><a href="?page={{ last_page }}">尾页</a></li>
+                <li {% if current_page == 1 %}class="active"{% endif %}><a href="?page=1&key={{ key }}">首页</a></li>
+                <li {% if current_page >= 2 %} {% else %}class="active"{% endif %}><a href="?page={{ current_page|add:-1 }}&key={{ key }}">上一页</a></li>
+                <li {% if current_page < last_page %} {% else %}class="active"{% endif %}><a href="?page={{ current_page|add:1 }}&key={{ key }}">下一页</a></li>
+                <li {% if current_page == last_page %}class="active"{% endif %}><a href="?page={{ last_page }}&key={{ key }}">尾页</a></li>
             </ul>
         </div>
 

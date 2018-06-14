@@ -101,7 +101,7 @@ def search(request):
     :return:
     """
     key = request.GET['key']
-    article_list = Article.objects.filter(title__contains=key)
+    article_list = Article.objects.filter(title__icontains=key)
     return render(request, 'blog/search.html',
                   {"article_list": article_list, "key": key})
 
