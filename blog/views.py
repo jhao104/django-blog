@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from blog.models import Article, Category, Comment
 
 
-def Index(request):
+def index(request):
     """
     博客首页
     :param request:
@@ -20,7 +20,7 @@ def Index(request):
                                                "source_id": "index"})
 
 
-def Articles(request, pk):
+def articles(request, pk):
     """
     博客列表页面
     :param request:
@@ -41,7 +41,7 @@ def Articles(request, pk):
                                                   })
 
 
-def About(request):
+def about(request):
     return render(request, 'blog/about.html')
 
 
@@ -50,16 +50,16 @@ def archive(request):
     return render(request, 'blog/archive.html', {"article_list": article_list})
 
 
-def Link(request):
+def link(request):
     return render(request, 'blog/link.html')
 
 
-def Message(request):
+def message(request):
     return render(request, 'blog/message_board.html', {"source_id": "message"})
 
 
 @csrf_exempt
-def GetComment(request):
+def getComment(request):
     """
     接收畅言的评论回推， post方式回推
     :param request:
