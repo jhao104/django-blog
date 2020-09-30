@@ -2,16 +2,15 @@
     <div class="top">
         <!--头像左边部分-->
         <div class="top-left">
-            <div class="logo"><a href="/"><img src="/static/images/h.gif"/></a></div>
-{#                <div class="logo"><a href="#"><img src="/static/images/logo.png"/></a></div>#}
+            <div class="logo"><a href="{% url "blog:index" %}"><img src="/static/images/h.gif" alt=""/></a></div>
 
             <!--滚动消息-->
             <div class="web-xiaoxi">
                 <i class="el-speaker"></i>
                 <ul class="mulitline">
-                    <li>正在最后的优化</li>
-                    <li>完成后将放出模板</li>
-                    <li>完美自适应手机</li>
+                    <li>j_hao104的博客</li>
+                    <li>现已开放源码下载</li>
+                    <li>喜欢的可以到github follow我</li>
                 </ul>
             </div>
             <!--END 消息 -->
@@ -23,14 +22,13 @@
         <nav class="mynav">
             <ul class="orange-text">
                 <li class=""><a href="{% url "blog:index" %}">首页</a></li>
-                <li><a href="{% url "blog:about" %}">关于</a></li>
-                <li><a href="{% url "blog:article" pk=0 %}">博客</a></li>
+                <li><a href="{% url "blog:list" %}">博客</a></li>
                 <li class='drop'>
                     <a href="JavaScript:;">分类<i class='el-chevron-down'></i></a>
-                    <div class="drop-nav orange-text ">
+                    <div class="drop-nav orange-text">
                         <ul>
                             {% for category in category_list %}
-                                <li><a href="{% url "blog:article" pk=category.pk %}">{{ category.name }}</a></li>
+                                <li><a href="{% url "blog:article" category.pk %}">{{ category.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -56,13 +54,12 @@
             <!--手机下拉菜单-->
             <ul>
                 <li><a href="{% url "blog:index" %}">首页</a></li>
-                <li><a href="{% url "blog:about" %}">关于</a></li>
-                <li><a href="{% url "blog:article" pk=0 %}">博客</a></li>
+                <li><a href="{% url "blog:article" 0 %}">博客</a></li>
                 <li class='mob-drop'>
-                    <a href="javascrip:;">分类</a>
+                    <a href="JavaScript:;">分类</a>
                     <ul class="mob-dropmenu">
                         {% for category in category_list %}
-                            <li><a href="{% url "blog:article" pk=category.pk %}">{{ category.name }}</a></li>
+                            <li><a href="{% url "blog:article" category.pk %}">{{ category.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
