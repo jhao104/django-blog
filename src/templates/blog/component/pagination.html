@@ -1,0 +1,28 @@
+<div class="pagination">
+    <div class="list-page">
+        <ul class="post-data">
+            <li><a>第 {{ pages.current_page }} - {{ pages.total_page }} 页</a> <a>共 {{ pages.total_number }} 条</a></li>
+        </ul>
+    </div>
+    <ul>
+        {% if pages.current_page == 1 %}
+            <li class="active"><a>首页</a></li>
+        {% else %}
+            <li><a href="?page=1">首页</a></li>
+        {% endif %}
+
+        {% if pages.current_page >= 2 %}
+            <li><a href="?page={{ pages.current_page|add:-1 }}">上一页</a></li>
+        {% else %}
+            <li class="active"><a>上一页</a></li>
+        {% endif %}
+
+        {% if pages.current_page < pages.total_page %}
+            <li><a href="?page={{ pages.current_page|add:1 }}">下一页</a></li>
+            <li><a href="?page={{ pages.total_page }}">尾页</a></li>
+        {% else %}
+            <li class="active"><a>下一页</a></li>
+            <li class="active"><a>尾页</a></li>
+        {% endif %}
+    </ul>
+</div>
