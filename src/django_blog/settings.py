@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blog.apps.BlogConfig'
 ]
 
 MIDDLEWARE = [
@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_blog',
+        'NAME': 'blog',
         'USER': 'root',
-        'PASSWORD': '5849312',
-        'HOST': '127.0.0.1',
+        'PASSWORD': 'jccfc',
+        'HOST': '19.19.9.231',
         'PORT': '3306'
     }
 }

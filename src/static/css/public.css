@@ -5,12 +5,12 @@ ul,dl,dt,dd,p{padding:0;margin:0;list-style:none;}
 h1,h2,h3,h4,h5{padding:10px 0;margin:0;text-indent:5px;margin-bottom:15px;}
 input,button,select{outline:none!important}
 
-body{ 
+body{
 	background:#e9ecd7 url(../images/bgimg/bg0.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-	
+
 }
 
 body:after {
@@ -29,7 +29,7 @@ body:after {
 i{
 	color:#ff6700;
 	margin-right:5px;
-	
+
 }
 
 
@@ -42,7 +42,7 @@ background: -webkit-linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 
 }
 div#tooltip p {color:#ff6700;font-size:12px;}
 div#tooltip p:after{
-	content:''; 
+	content:'';
 	width: 0;
 	height: 0;
 	position:absolute;
@@ -180,7 +180,7 @@ header .mynav{width:60%;float:right;height:100%;position:relative;}
 .xiangguan div span{display:block;width:100%;padding-top:10px;color:#777;}
 .xiangguan .benbo{background:#0cabd3;}
 .xiangguan > div >.mail-btn{background:#0cd38f;padding:0;}
-.xiangguan .taobao{background:#ee4f08;}
+.xiangguan .githbu{background:#5B5B5B;}
 .xiangguan .side-fx{background:#8aee08;cursor:pointer;}
 .xiangguan a:hover{opacity:0.8;transform:rotate(360deg) scale(1.3);}
 .xiangguan a i{color:inherit;}
@@ -394,7 +394,7 @@ footer{width:100%;background:rgba(0,67,94,0.95);margin-top:35px;}
 	right:20px;
 	cursor:pointer;
 	text-indent:-9999px;
-	z-index:12; 
+	z-index:12;
 	display:none;
 }
 
@@ -415,12 +415,12 @@ footer{width:100%;background:rgba(0,67,94,0.95);margin-top:35px;}
 @media screen and (min-width:1023px){
 	#mob-tianqi{display:none;}
 	.mobile-nav{display:none;}
-	
+
 }
 
 
 @media screen and (min-width:1024px) and (max-width:1199px){
-	
+
 	.container,header .top{max-width:1000px;}
 }
 
@@ -449,15 +449,15 @@ body{
 	.web-xiaoxi{max-width:55%!important;margin-top:16px;}
 	.t_news b{left:10px!important;}
 	.news_li li,.swap li{text-align:left!important;text-indent:35px;}
-	
+
 	.arclist>ul>li{margin-bottom:1em;padding:15px 10px;}
 	.arclist>ul>li> .arcimg{width:30%;}
 	.arc-right{width:66%;}
 
 	.data-count ul,.cloud ul,.bdsharebuttonbox{width:95%;}
-	
+
 	#tuijian,#Hot,#New{background-position:-100% -100%;}
-	
+
 	.left-side,.right-side{width:95%;margin:auto;float:none;}
 	.bdsharebuttonbox a{margin:0 2.5%!important;}
 
@@ -470,5 +470,5 @@ body{
 	.article-push>ul>li> .arc-right p{height:40px;}
 	.w95{width:95%;margin:auto;}
 	.clos-new ul li{font-size:12px;}
-	
+
 }

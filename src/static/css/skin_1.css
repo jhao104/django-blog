@@ -13,11 +13,11 @@ html {
 }
 
 #color li, #comment-post button, #nav > ul > li span:hover, .active, .archives h4, .backtop, .carousel-indicators li, .comment-tools, .face, .post-context button:hover, .search button, .ssearch input[type=submit], .tab_nav, .toggler, .tools, .totop, .zujian, a {
-    cursor: url(http://ofcf9jxzt.bkt.clouddn.com/django_blog/static/link.cur), auto
+    cursor: url(/static/cur/link.cur), auto
 }
 
 body {
-    cursor: url(http://ofcf9jxzt.bkt.clouddn.com/django_blog/static/default.cur), auto
+    cursor: url(/static/cur/default.cur), auto
 }
 
 body:after {

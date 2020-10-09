@@ -13,19 +13,19 @@
 __author__ = 'JHao'
 
 from blog import views
-from django.conf.urls import url
+from django.urls import path
 
 urlpatterns = [
-    url(r'^index/$', views.index, name='index'),
-    url(r'^about/$', views.about, name='about'),
-    url(r'^archive/$', views.archive, name='archive'),
-    url(r'^link/$', views.link, name='link'),
-    url(r'^message$', views.message, name='message'),
-    url(r'^article/(?P<pk>\d+)/$', views.articles, name='article'),
-    url(r'^getComment/$', views.getComment, name='get_comment'),
-    url(r'^detail/(?P<pk>\d+)/$', views.detail, name='detail'),
-    url(r'^detail/(?P<pk>\d+)$', views.detail, name='detail'),
-    url(r'^search/$', views.search, name='search'),
-    url(r'^tag/(?P<name>.*?)/$', views.tag, name='tag'),
+    path('', views.index, name='index'),
+    path('list/', views.blog_list, name='list'),
+    path('detail/<int:blog_id>$', views.detail, name='detail'),
+    path('about/', views.about, name='about'),
+    path('archive/', views.archive, name='archive'),
+    path('link/', views.link, name='link'),
+    path('message/', views.message, name='message'),
+    path('article/<int:article_id>/', views.articles, name='article'),
+    path(r'^getComment/$', views.getComment, name='get_comment'),
+    path(r'^search/$', views.search, name='search'),
+    path(r'^tag/(?P<name>.*?)/$', views.tag, name='tag'),
 
 ]

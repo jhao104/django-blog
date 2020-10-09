@@ -13,7 +13,7 @@
 __author__ = 'JHao'
 
 import re
-import markdown
+# import markdown
 from django import template
 from django.template.defaultfilters import stringfilter
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -30,22 +30,23 @@ def slice_list(value, index):
 @register.filter(is_safe=True)
 @stringfilter
 def custom_markdown(value):
-    content = mark_safe(markdown.markdown(value, extensions=['markdown.extensions.fenced_code',
-                                                             # 'markdown.extensions.codehilite',
-                                                             'markdown.extensions.tables'],
-                                          safe_mode=True, enable_attributes=False))
-
-    # Prism 代码高亮查件 需要将所有的
-    # markdown转换的代码:<pre><code class="python">import *** </code></pre>
-    # 转换为
-    # <pre class="line-numbers"><code class="language-python">import *** </code></pre>
-    code_list = re.findall(r'<pre><code class="(.*)">', content, re.M)
-    for code in code_list:
-        content = re.sub(r'<pre><code class="(.*)">',
-                         '<pre class="line-numbers"><code class="language-{code}">'.format(code=code.lower()), content,
-                         1)
-    content = re.sub(r'<pre>\s?<code>', '<pre class="line-numbers"><code class="language-python">', content)
-    return content
+    # content = mark_safe(markdown.markdown(value, extensions=['markdown.extensions.fenced_code',
+    #                                                          # 'markdown.extensions.codehilite',
+    #                                                          'markdown.extensions.tables'],
+    #                                       safe_mode=True, enable_attributes=False))
+    #
+    # # Prism 代码高亮查件 需要将所有的
+    # # markdown转换的代码:<pre><code class="python">import *** </code></pre>
+    # # 转换为
+    # # <pre class="line-numbers"><code class="language-python">import *** </code></pre>
+    # code_list = re.findall(r'<pre><code class="(.*)">', content, re.M)
+    # for code in code_list:
+    #     content = re.sub(r'<pre><code class="(.*)">',
+    #                      '<pre class="line-numbers"><code class="language-{code}">'.format(code=code.lower()), content,
+    #                      1)
+    # content = re.sub(r'<pre>\s?<code>', '<pre class="line-numbers"><code class="language-python">', content)
+    # return content
+    return value
 
 
 @register.simple_tag(takes_context=True)

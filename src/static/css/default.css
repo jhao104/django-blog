@@ -351,9 +351,11 @@ background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255
 
 @media screen and (min-width:769px){.pc-hidden{display:none;}
 
-@media screen and (min-width:1024px) and (max-width:1199px){
-	.blog_hd ul li{width:22%;}
-	
+@media screen and (min-width:1024px) and (max-width:1199px) {
+	.blog_hd ul li {
+		width: 22%;
+	}
+}
 }
 
 

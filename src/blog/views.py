@@ -8,26 +8,32 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from blog.models import Article, Category, Comment
 
+from django_blog.util import PageInfo
+
 
 def index(request):
-    """
-    博客首页
-    :param request:
-    :return:
-    """
-    article_list = Article.objects.all().order_by('-date_time')[0:5]
-    return render(request, 'blog/index.html', {"article_list": article_list,
-                                               "source_id": "index"})
+    _blog_list = Article.objects.all().order_by('-date_time')[0:5]
+    _blog_hot = Article.objects.all().order_by('-view')[0:6]
+    return render(request, 'blog/index.html', {"blog_list": _blog_list, "blog_hot": _blog_hot})
 
 
-def articles(request, pk):
+def blog_list(request):
+    page_number = request.GET.get("page")
+    page_number = 1 if not page_number or not page_number.isdigit() else int(page_number)
+    blog_count = Article.objects.count()
+    page_info = PageInfo(page_number, blog_count)
+    _blog_list = Article.objects.all()[page_info.index_start: page_info.index_end]
+    return render(request, 'blog/list.html', {"blog_list": _blog_list, "page_info": page_info})
+
+
+def articles(request, article_id):
     """
     博客列表页面
     :param request:
     :param pk:
     :return:
     """
-    pk = int(pk)
+    pk = int(article_id)
     if pk:
         category_object = get_object_or_404(Category, pk=pk)
         category = category_object.name
@@ -81,14 +87,14 @@ def getComment(request):
     return JsonResponse({"status": "ok"})
 
 
-def detail(request, pk):
+def detail(request, blog_id):
     """
     博文详情
     :param request:
     :param pk:
     :return:
     """
-    article = get_object_or_404(Article, pk=pk)
+    article = get_object_or_404(Article, pk=blog_id)
     article.viewed()
     return render(request, 'blog/detail.html', {"article": article,
                                                 "source_id": article.id})
