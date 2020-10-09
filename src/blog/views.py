@@ -67,6 +67,11 @@ def tag(request, name):
 
 
 def archive(request):
+    """
+    文章归档
+    :param request:
+    :return:
+    """
     _blog_list = Article.objects.values("id", "title", "date_time").order_by('-date_time')
     archive_dict = {}
     for blog in _blog_list:
@@ -75,7 +80,8 @@ def archive(request):
             archive_dict[pub_month].append(blog)
         else:
             archive_dict[pub_month] = [blog]
-    data = sorted([{"date": _[0], "blogs": _[1]} for _ in archive_dict.items()], key=lambda item: item["date"])
+    data = sorted([{"date": _[0], "blogs": _[1]} for _ in archive_dict.items()], key=lambda item: item["date"],
+                  reverse=True)
     return render(request, 'blog/archive.html', {"data": data})
 
 
@@ -98,14 +104,6 @@ def articles(request, article_id):
     return render(request, 'blog/articles.html', {"article_list": article_list,
                                                   "category": category,
                                                   })
-
-
-def about(request):
-    return render(request, 'blog/about.html')
-
-
-def link(request):
-    return render(request, 'blog/link.html')
 
 
 def message(request):
@@ -155,6 +153,8 @@ def search(request):
     :return:
     """
     key = request.GET['key']
-    article_list = Article.objects.filter(title__icontains=key)
-    return render(request, 'blog/search.html',
-                  {"article_list": article_list, "key": key})
+    page_number = get_page(request)
+    blog_count = Article.objects.filter(title__icontains=key).count()
+    page_info = PageInfo(page_number, blog_count)
+    _blog_list = Article.objects.filter(title__icontains=key)[page_info.index_start: page_info.index_end]
+    return render(request, 'blog/search.html', {"blog_list": _blog_list, "pages": page_info, "key": key})
