@@ -18,14 +18,15 @@ from django.urls import path
 urlpatterns = [
     path('', views.index, name='index'),
     path('list/', views.blog_list, name='list'),
-    path('detail/<int:blog_id>$', views.detail, name='detail'),
-    path('about/', views.about, name='about'),
+    path('tag/<str:name>/', views.tag, name='tag'),
+    path('category/<str:name>/', views.category, name='category'),
+    path('detail/<int:pk>/', views.detail, name='detail'),
     path('archive/', views.archive, name='archive'),
+    path('about/', views.about, name='about'),
     path('link/', views.link, name='link'),
     path('message/', views.message, name='message'),
     path('article/<int:article_id>/', views.articles, name='article'),
     path(r'^getComment/$', views.getComment, name='get_comment'),
     path(r'^search/$', views.search, name='search'),
-    path(r'^tag/(?P<name>.*?)/$', views.tag, name='tag'),
 
 ]

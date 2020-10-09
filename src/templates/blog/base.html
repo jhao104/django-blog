@@ -14,14 +14,10 @@
     <meta name="author" content="j_hao104"/>
     <meta name="baidu-site-verification" content="2HhDg1sekr"/>
     <meta name="google-site-verification" content="gpXH5Aw-1dy2I5NHeRnNFS_P-PSA_d5TOJHn5bBPvSI"/>
-    <!--CSS-->
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
-    <script src="/static/js/jquery.2.1.4.min.js"></script>
-    <script src="/static/js/my.js"></script>
-    <script>
-        $("html").append("<div class='jiazai'><img src='/static/images/icon/loading.gif'/><span>正在加载中请等待...</span></div>")
-    </script>
+
     <!--CSS-->
+    {% block css %}{% endblock %}
     <link rel="stylesheet" href="/static/css/default.css"/>
     <link rel="stylesheet" href="/static/css/public.css"/>
     <link rel="stylesheet" href="/static/css/animation.css"/>
@@ -30,9 +26,13 @@
     <link rel="stylesheet" type="text/css" href="/static/css/skin_2.css" title="jianyue"/>
     <link rel="stylesheet" type="text/css" href="/static/css/skin_3.css" title="qingshuang"/>
     <link rel="stylesheet" href="/static/css/font-icon.css"/>
-    {% block css %}{% endblock %}
     <!--JS-->
 
+    <script src="/static/js/jquery.2.1.4.min.js"></script>
+    <script src="/static/js/my.js"></script>
+    <script>
+        $("html").append("<div class='jiazai'><img src='/static/images/icon/loading.gif'/><span>正在加载中请等待...</span></div>")
+    </script>
     <script src="/static/js/superbg.min.js"></script>
     <script src="/static/js/superbg-custom.js"></script>
     <script src="/static/js/tooltip.js"></script>
@@ -69,8 +69,6 @@
 <!---END底部-->
 
 {% block js %}{% endblock %}
-
-{% include 'blog/component/autoPushBaiDu.html' %}
 
 </body>
 </html>

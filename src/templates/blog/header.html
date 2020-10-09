@@ -10,7 +10,7 @@
                 <ul class="mulitline">
                     <li>烂笔头 - j_hao104的博客</li>
                     <li>现已开放源码下载</li>
-                    <li>喜欢的可以到github follow我</li>
+                    <li>喜欢的可以在github follow我</li>
                 </ul>
             </div>
             <!--END 消息 -->
@@ -28,7 +28,7 @@
                     <div class="drop-nav orange-text">
                         <ul>
                             {% for category in category_list %}
-                                <li><a href="{% url "blog:article" category.pk %}">{{ category.name }}</a></li>
+                                <li><a href="{% url "blog:category" name=category.name %}">{{ category.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -54,12 +54,12 @@
             <!--手机下拉菜单-->
             <ul>
                 <li><a href="{% url "blog:index" %}">首页</a></li>
-                <li><a href="{% url "blog:article" 0 %}">博客</a></li>
+                <li><a href="{% url "blog:list" %}">博客</a></li>
                 <li class='mob-drop'>
                     <a href="JavaScript:;">分类</a>
                     <ul class="mob-dropmenu">
                         {% for category in category_list %}
-                            <li><a href="{% url "blog:article" category.pk %}">{{ category.name }}</a></li>
+                            <li><a href="{% url "blog:category" name=category.name %}">{{ category.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>

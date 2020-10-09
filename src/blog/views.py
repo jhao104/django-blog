@@ -11,6 +11,11 @@ from blog.models import Article, Category, Comment
 from django_blog.util import PageInfo
 
 
+def get_page(request):
+    page_number = request.GET.get("page")
+    return 1 if not page_number or not page_number.isdigit() else int(page_number)
+
+
 def index(request):
     _blog_list = Article.objects.all().order_by('-date_time')[0:5]
     _blog_hot = Article.objects.all().order_by('-view')[0:6]
@@ -18,12 +23,60 @@ def index(request):
 
 
 def blog_list(request):
-    page_number = request.GET.get("page")
-    page_number = 1 if not page_number or not page_number.isdigit() else int(page_number)
+    """
+    列表
+    :param request:
+    :return:
+    """
+    page_number = get_page(request)
     blog_count = Article.objects.count()
     page_info = PageInfo(page_number, blog_count)
     _blog_list = Article.objects.all()[page_info.index_start: page_info.index_end]
     return render(request, 'blog/list.html', {"blog_list": _blog_list, "page_info": page_info})
+
+
+def category(request, name):
+    """
+    分类
+    :param request:
+    :param name:
+    :return:
+    """
+    page_number = get_page(request)
+    blog_count = Article.objects.filter(category__name=name).count()
+    page_info = PageInfo(page_number, blog_count)
+    _blog_list = Article.objects.filter(category__name=name)[page_info.index_start: page_info.index_end]
+    return render(request, 'blog/category.html', {"blog_list": _blog_list, "page_info": page_info,
+                                                  "category": name})
+
+
+def tag(request, name):
+    """
+    标签
+    :param request:
+    :param name
+    :return:
+    """
+    page_number = get_page(request)
+    blog_count = Article.objects.filter(tag__tag_name=name).count()
+    page_info = PageInfo(page_number, blog_count)
+    _blog_list = Article.objects.filter(tag__tag_name=name)[page_info.index_start: page_info.index_end]
+    return render(request, 'blog/tag.html', {"blog_list": _blog_list,
+                                             "tag": name,
+                                             "page_info": page_info})
+
+
+def archive(request):
+    _blog_list = Article.objects.values("id", "title", "date_time").order_by('-date_time')
+    archive_dict = {}
+    for blog in _blog_list:
+        pub_month = blog.get("date_time").strftime("%Y年%m月")
+        if pub_month in archive_dict:
+            archive_dict[pub_month].append(blog)
+        else:
+            archive_dict[pub_month] = [blog]
+    data = sorted([{"date": _[0], "blogs": _[1]} for _ in archive_dict.items()], key=lambda item: item["date"])
+    return render(request, 'blog/archive.html', {"data": data})
 
 
 def articles(request, article_id):
@@ -49,11 +102,6 @@ def articles(request, article_id):
 
 def about(request):
     return render(request, 'blog/about.html')
-
-
-def archive(request):
-    article_list = Article.objects.order_by('-date_time')
-    return render(request, 'blog/archive.html', {"article_list": article_list})
 
 
 def link(request):
@@ -87,14 +135,14 @@ def getComment(request):
     return JsonResponse({"status": "ok"})
 
 
-def detail(request, blog_id):
+def detail(request, pk):
     """
     博文详情
     :param request:
     :param pk:
     :return:
     """
-    article = get_object_or_404(Article, pk=blog_id)
+    article = get_object_or_404(Article, pk=pk)
     article.viewed()
     return render(request, 'blog/detail.html', {"article": article,
                                                 "source_id": article.id})
@@ -110,15 +158,3 @@ def search(request):
     article_list = Article.objects.filter(title__icontains=key)
     return render(request, 'blog/search.html',
                   {"article_list": article_list, "key": key})
-
-
-def tag(request, name):
-    """
-    标签
-    :param request:
-    :param name
-    :return:
-    """
-    article_list = Article.objects.filter(tag__tag_name=name)
-    return render(request, 'blog/tag.html', {"article_list": article_list,
-                                             "tag": name})
