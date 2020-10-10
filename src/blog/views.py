@@ -85,33 +85,12 @@ def archive(request):
     return render(request, 'blog/archive.html', {"data": data})
 
 
-def articles(request, article_id):
-    """
-    博客列表页面
-    :param request:
-    :param pk:
-    :return:
-    """
-    pk = int(article_id)
-    if pk:
-        category_object = get_object_or_404(Category, pk=pk)
-        category = category_object.name
-        article_list = Article.objects.filter(category_id=pk)
-    else:
-        # pk为0时表示全部
-        article_list = Article.objects.all()  # 获取全部文章
-        category = u''
-    return render(request, 'blog/articles.html', {"article_list": article_list,
-                                                  "category": category,
-                                                  })
-
-
 def message(request):
     return render(request, 'blog/message_board.html', {"source_id": "message"})
 
 
 @csrf_exempt
-def getComment(request):
+def get_comment(request):
     """
     接收畅言的评论回推， post方式回推
     :param request:
@@ -140,10 +119,9 @@ def detail(request, pk):
     :param pk:
     :return:
     """
-    article = get_object_or_404(Article, pk=pk)
-    article.viewed()
-    return render(request, 'blog/detail.html', {"article": article,
-                                                "source_id": article.id})
+    blog = get_object_or_404(Article, pk=pk)
+    blog.viewed()
+    return render(request, 'blog/detail.html', {"blog": blog})
 
 
 def search(request):

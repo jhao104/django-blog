@@ -24,7 +24,6 @@ urlpatterns = [
     path('archive/', views.archive, name='archive'),
     path('search/', views.search, name='search'),
     path('message/', views.message, name='message'),
-    path('article/<int:article_id>/', views.articles, name='article'),
-    path(r'^getComment/$', views.getComment, name='get_comment'),
+    path('getComment/', views.get_comment, name='get_comment'),
 
 ]

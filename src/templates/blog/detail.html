@@ -2,44 +2,33 @@
 {% load custom_filter %}
 
 {% block title %}
-    <title>{{ article.title }} - 烂笔头</title>
+    <title>{{ blog.title }} - 烂笔头</title>
 {% endblock %}
 
 {% block meta %}
     <meta name="keywords"
-          content="{{ article.title }},{% for tag in article.tag.all %}{{ tag }},{% endfor %}{{ article.category }}"/>
-    <meta name="description" content="{{ article.digest|safe }}"/>
+          content="{{ blog.title }},{% for tag in blog.tag.all %}{{ tag }},{% endfor %}{{ blog.category }}"/>
+    <meta name="description" content="{{ blog.digest|safe }}"/>
 {% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="/static/css/markdown.css">
     <link rel="stylesheet" href="/static/prism/prism.css">
-
-    <script src="/static/prism/prism.js" charset="utf-8"></script>
-
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {inlineMath: [['$', '$']]},
-            messageStyle: "none"
-        });
-    </script>
-
 {% endblock %}
 
 {% block content %}
 
     <div class="mysection content">
         <article>
-            <h3 class="arc-title index-title">{{ article.title }} </h3>
+            <h3 class="arc-title index-title">{{ blog.title }} </h3>
             <div class="post-line bg-color">
                 <ul>
-                    <li><a title="{{ article.author }}发表于{{ article.date_time }}"><i class="el-time"></i>
-                        <time>{{ article.date_time }}</time>
+                    <li><a title="{{ blog.author }}发表于{{ blog.date_time }}"><i class="el-time"></i>
+                        <time>{{ blog.date_time }}</time>
                     </a></li>
-                    <li><a href="#"><i class="el-user"></i>{{ article.author }}</a></li>
-                    <li><a href="#Coon" title="转到评论"><i class="el-comment"></i>{{ article.comment }}条</a></li>
-                    <li><a title="已有 {{ article.view }} 次浏览"><i class="el-eye-open"></i>{{ article.view }}</a></li>
+                    <li><a href="#"><i class="el-user"></i>{{ blog.author }}</a></li>
+                    <li><a href="#Coon" title="转到评论"><i class="el-comment"></i>{{ blog.comment }}条</a></li>
+                    <li><a title="已有 {{ blog.view }} 次浏览"><i class="el-eye-open"></i>{{ blog.view }}</a></li>
                 </ul>
             </div>
 
@@ -52,7 +41,7 @@
                         </p>
                         <div class="AnchorContent" id="AnchorContent"></div>
                     </div>
-                    {{ article.content|custom_markdown|safe }}
+                    {{ blog.content|custom_markdown|safe }}
                 </div>
             </div>
             <!--分享-->
@@ -76,13 +65,12 @@
                             "bdSize": "32"
                         }, "share": {}
                     };
-                    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+                    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
                 </div>
             </div>
             <!--END 分享-->
             <div class="cyReward " style="text-align: center">
-                <div id="cyReward" role="cylabs" data-use="reward" sid="{{ source_id }}"></div>
-
+                <div id="cyReward" role="cylabs" data-use="reward" sid="{{ blog.id }}"></div>
             </div>
 
             <hr>
@@ -91,28 +79,25 @@
             <!--标签-->
             <div class="article_tag">
                 <ul>
-                    <li><a href="{% url "blog:article" pk=article.category_id %}"
-                           title="归类：{{ article.category }}">{{ article.category }}</a></li>
-                    {% for tag in article.tag.all %}
+                    <li><a href="{% url "blog:category" blog.category %}"
+                           title="分类：{{ blog.category }}">{{ blog.category }}</a></li>
+                    {% for tag in blog.tag.all %}
                         <li><a href="{% url "blog:tag" name=tag.tag_name %}"
-                               title="标签：{{ tag.tag_name }} ">{{ tag.tag_name }}</a>&nbsp;</li>
+                               title="标签：{{ tag.tag_name }} ">{{ tag.tag_name }}</a>&nbsp;
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
 
             <div class="cyEmoji" style="text-align: center">
-                <div id="cyEmoji" role="cylabs" data-use="emoji" sid="{{ source_id }}"></div>
+                <div id="cyEmoji" role="cylabs" data-use="emoji" sid="{{ blog.id }}"></div>
             </div>
 
         </article>
 
         <!--评论表单-->
-        {% include "blog/message.html" %}
+        {% include "blog/message.html"  with source_id=blog.id %}
 
-
-        <script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
-        <script type="text/javascript" charset="utf-8"
-                src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt6A5N47"></script>
     </div>
 
 
@@ -123,6 +108,24 @@
 
 
 {% block js %}
+
+    <script src="/static/js/jquery.2.1.4.min.js"></script>
+
+    <script src="/static/prism/clipboard.min.js"></script>
+    <script src="/static/prism/prism.js" charset="utf-8"></script>
+
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$', '$']]},
+            messageStyle: "none"
+        });
+
+
+    </script>
+
+    <script type="text/javascript" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt6A5N47"></script>
 
     <script>
         function GenerateContentList() {
@@ -148,6 +151,7 @@
                 $("#AnchorContent").toggle();
             });
         }
+
         GenerateContentList();
     </script>
 
