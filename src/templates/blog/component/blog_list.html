@@ -25,7 +25,7 @@
                 <li><a title="已有 {{ blog.view }} 次浏览"><i class="el-eye-open"></i>{{ blog.view }}</a></li>
                 {% for tag in blog.tag.values %}
                     <li class="mob-hidden">
-                        <a title="标签: {{ tag.tag_name }}" href="#"><i class="el-tag"></i>{{ tag.tag_name }}</a>&nbsp;
+                        <a title="标签: {{ tag.tag_name }}" href="{% url "blog:tag" tag.tag_name %}"><i class="el-tag"></i>{{ tag.tag_name }}</a>&nbsp;
                     </li>
                 {% endfor %}
                 <li><a href="{% url "blog:list" %}}" title="查看分类"><i
