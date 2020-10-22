@@ -20,6 +20,8 @@ from blog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include(('blog.urls', 'blog'), namespace='blog')),
+    path('', views.index, name='index'),
+
 ]
 
 handler404 = views.page_not_found_error
