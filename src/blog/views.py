@@ -136,7 +136,9 @@ def search(request):
     return render(request, 'blog/search.html', {"blog_list": _blog_list, "pages": page_info, "key": key})
 
 
-def page_not_found(request, exception):
-    response = render(request, "404.html")
-    response.status_code = 404
-    return response
+def page_not_found_error(request, exception):
+    return render(request, "404.html", status=404)
+
+
+def page_error(request):
+    return render(request, "404.html", status=500)

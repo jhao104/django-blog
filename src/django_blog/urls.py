@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.urls import path, include
 from django.contrib import admin
+from blog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include(('blog.urls', 'blog'), namespace='blog')),
 ]
+
+handler404 = views.page_not_found_error
+handler500 = views.page_error

@@ -28,4 +28,3 @@ urlpatterns = [
 
 ]
 
-handler404 = views.page_not_found
