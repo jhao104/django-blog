@@ -3,12 +3,10 @@
 
 import json
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404, reverse
-from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt
-from blog.models import Article, Category, Comment
-
 from django_blog.util import PageInfo
+from blog.models import Article, Comment
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, get_object_or_404
 
 
 def get_page(request):
@@ -136,3 +134,9 @@ def search(request):
     page_info = PageInfo(page_number, blog_count)
     _blog_list = Article.objects.filter(title__icontains=key)[page_info.index_start: page_info.index_end]
     return render(request, 'blog/search.html', {"blog_list": _blog_list, "pages": page_info, "key": key})
+
+
+def page_not_found(request, exception):
+    response = render(request, "404.html")
+    response.status_code = 404
+    return response

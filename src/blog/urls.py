@@ -27,3 +27,5 @@ urlpatterns = [
     path('getComment/', views.get_comment, name='get_comment'),
 
 ]
+
+handler404 = views.page_not_found
