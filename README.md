@@ -37,6 +37,7 @@ python manage.py makemigrations blog
 python manage.py migrate
 python manage.py runserver
 ```
+[文档](docs/install.md)
 
 ### 使用
 

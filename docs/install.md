@@ -24,7 +24,7 @@ django_blog.settings.py
 ```
 
     * 配置畅言(评论需要)
-    
+
 登录畅言http://changyan.kuaizhan.com/, 注册你的站点并配置完毕,
 修改 `templates/blog/component/changyan.html` 内容，替换在畅言中生成的js。
 畅言js位置: 畅言管理后台-》安装畅言-》通用代码安装-》自适应安装代码, 替换现有代码
