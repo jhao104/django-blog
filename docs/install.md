@@ -23,7 +23,7 @@ pip install -r requirements.txt
 django_blog.settings.py
 ```
 
-    * 配置畅言(评论需要)
+   * 配置畅言(评论需要)
 
 登录畅言http://changyan.kuaizhan.com/, 注册你的站点并配置完毕,
 修改 `templates/blog/component/changyan.html` 内容，替换在畅言中生成的js。
