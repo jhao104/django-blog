@@ -6,6 +6,20 @@
 
 {% block css %}
     <link href="/static/layui/css/layui.css" rel="stylesheet"/>
+    <style>
+        /* disable layui style */
+        .layui-card-header {
+            border-bottom: transparent;
+        }
+
+        .layui-card {
+            background-color: transparent;
+        }
+
+        .layui-timeline-axis {
+            background-color: transparent;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -22,7 +36,7 @@
                                 <ul>
                                     {% for blog in blog_list.blogs %}
                                         <li>
-                                            <em>{{blog.date_time |date:"d"}}日</em>
+                                            <em>{{ blog.date_time |date:"d" }}日</em>
                                             <a href="{% url "blog:detail" blog.id %}">{{ blog.title }}</a>
                                         </li>
                                     {% endfor %}
