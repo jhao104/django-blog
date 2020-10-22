@@ -1,0 +1,38 @@
+<div class="arclist">
+    <ul>
+        {% for blog in blogs %}
+            {% if id %}
+                <li id="{{ id }}">
+                    {% else %}
+                <li {% if blog.view > 1000 %} id="tuijian" {% elif article.view > 500 %} id="Hot" {% endif %}>
+            {% endif %}
+        <div class="arcimg">
+            <img src="{{ blog.picture }}"
+                 alt="{{ blog.title }}" title="{{ blog.title }}"/>
+        </div>
+        <div class="arc-right">
+            <h4 class="blue-text"><a href="{% url "blog:detail" blog.id %}"
+                                     title="{{ blog.title }}">{{ blog.title }}</a></h4>
+            <p>{{ blog.digest }}</p>
+            <ul>
+                <li><a title="发布于 {{ blog.date_time }}  "><i
+                        class="el-time"></i> {{ blog.date_time }}</a></li>
+                <li><a title="作者： {{ blog.author }}"><i class="el-user"></i>{{ blog.author }}</a>
+                </li>
+                <li><a title="已有 {{ blog.comment }} 条评论"><i
+                        class="el-comment"></i>{{ blog.comment }}</a>
+                </li>
+                <li><a title="已有 {{ blog.view }} 次浏览"><i class="el-eye-open"></i>{{ blog.view }}</a></li>
+                {% for tag in blog.tag.values %}
+                    <li class="mob-hidden">
+                        <a title="标签: {{ tag.tag_name }}" href="{% url "blog:tag" tag.tag_name %}"><i class="el-tag"></i>{{ tag.tag_name }}</a>&nbsp;
+                    </li>
+                {% endfor %}
+                <li><a href="{% url "blog:list" %}}" title="查看分类"><i
+                        class="el-th-list"></i>{{ blog.category }}</a></li>
+            </ul>
+        </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

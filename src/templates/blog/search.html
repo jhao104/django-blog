@@ -1,0 +1,53 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    <title>搜索:{{ key }} | 烂笔头</title>
+{% endblock %}
+
+{% block content %}
+    <section class="mysection">
+        <h4 class="index-title">
+            <a href="{% url "blog:list" %}"><i class="el-search"></i>搜索到<b class="lable">{{ key }}</b>相关结果</a>
+            <span style="float:right;margin-right:10px;">
+                共:<a class="orange-text"> {{ pages.total_number }} </a>篇</span>
+        </h4>
+        {% if blog_list %}
+            {% include "blog/component/blog_list.html" with blogs=blog_list %}
+
+            <div class="pagination">
+                <div class="list-page">
+                    <ul class="post-data">
+                        <li><a>第 {{ pages.current_page }} - {{ pages.total_page }} 页</a> <a>共 {{ pages.total_number }}
+                            条</a></li>
+                    </ul>
+                </div>
+                <ul>
+                    {% if pages.current_page == 1 %}
+                        <li class="active"><a>首页</a></li>
+                    {% else %}
+                        <li><a href="?key={{ key }}&page=1">首页</a></li>
+                    {% endif %}
+
+                    {% if pages.current_page >= 2 %}
+                        <li><a href="?key={{ key }}&page={{ pages.current_page|add:-1 }}">上一页</a></li>
+                    {% else %}
+                        <li class="active"><a>上一页</a></li>
+                    {% endif %}
+
+                    {% if pages.current_page < pages.total_page %}
+                        <li><a href="?key={{ key }}&page={{ pages.current_page|add:1 }}">下一页</a></li>
+                        <li><a href="?key={{ key }}&page={{ pages.total_page }}">尾页</a></li>
+                    {% else %}
+                        <li class="active"><a>下一页</a></li>
+                        <li class="active"><a>尾页</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        {% else %}
+            <p>暂时没有文章..</p>
+        {% endif %}
+    </section>
+
+{% endblock %}
+

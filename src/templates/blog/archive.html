@@ -1,0 +1,56 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    <title>文章归档｜烂笔头</title>
+{% endblock %}
+
+{% block css %}
+    <link href="/static/layui/css/layui.css" rel="stylesheet"/>
+    <style>
+        /* disable layui style */
+        .layui-card-header {
+            border-bottom: transparent;
+        }
+
+        .layui-card {
+            background-color: transparent;
+        }
+
+        .layui-timeline-axis {
+            background-color: transparent;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section class="mysection">
+        <div class="layui-card">
+            <div class="layui-card-header">文章归档</div>
+            <div class="layui-card-body">
+                <ul class="layui-timeline">
+                    {% for blog_list in data %}
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title" style="padding:0">{{ blog_list.date }}</h3>
+                                <ul>
+                                    {% for blog in blog_list.blogs %}
+                                        <li>
+                                            <em>{{ blog.date_time |date:"d" }}日</em>
+                                            <a href="{% url "blog:detail" blog.id %}">{{ blog.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/layui/layui.js"></script>
+{% endblock %}

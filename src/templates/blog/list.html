@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% load custom_filter %}
+
+{% block title %}
+    <title>博客列表｜烂笔头</title>
+{% endblock %}
+
+{% block content %}
+    {% if blog_list %}
+        <section class="mysection">
+            {% include "blog/component/blog_list.html" with blogs=blog_list %}
+            {% include "blog/component/pagination.html" with pages=page_info %}
+        </section>
+    {% else %}
+        <section class="mysection" style="animation: fuxiasuo 0.8s;">暂时没有文章..</section>
+    {% endif %}
+{% endblock %}

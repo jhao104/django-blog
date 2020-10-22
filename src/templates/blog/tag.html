@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    <title>标签：{{ tag }} - 烂笔头</title>
+{% endblock %}
+
+{% block content %}
+    <section class="mysection">
+        <h4 class="index-title">
+            <a href="{% url "blog:tag" name=tag %}"><i class="el-tag"></i> 标签<b class="lable">{{ tag }}</b></a>
+            <span style="float:right;margin-right:10px;">共有:
+                <a class="orange-text"> {{ page_info.total_number }} </a>篇</span>
+        </h4>
+        {% if blog_list %}
+            {% include "blog/component/blog_list.html" with blogs=blog_list %}
+            {% include "blog/component/pagination.html" with pages=page_info %}
+        {% else %}
+            <p>暂时没有文章..</p>
+        {% endif %}
+    </section>
+
+{% endblock %}

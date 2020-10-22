@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+
+    {% block title %}
+        <title>烂笔头 - j_hao104的博客</title>
+    {% endblock %}
+
+    {% block meta %}
+        <meta charset="UTF-8">
+        <meta name="keywords" content="Python,爬虫,Django,算法,j_hao104的博客"/>
+        <meta name="description" content="j_hao104的博客,一个个人网站，IT技术分享，记录IT生活，提供技术分享和作品分享的个人网站"/>
+    {% endblock %}
+    <meta name="author" content="j_hao104"/>
+    <meta name="baidu-site-verification" content="2HhDg1sekr"/>
+    <meta name="google-site-verification" content="gpXH5Aw-1dy2I5NHeRnNFS_P-PSA_d5TOJHn5bBPvSI"/>
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+
+    <!--CSS-->
+    {% block css %}{% endblock %}
+    <link rel="stylesheet" href="/static/css/default.css"/>
+    <link rel="stylesheet" href="/static/css/public.css"/>
+    <link rel="stylesheet" href="/static/css/animation.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/skin_1.css" title="qingxin"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/skin_2.css" title="jianyue"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/skin_3.css" title="qingshuang"/>
+    <link rel="stylesheet" href="/static/css/font-icon.css"/>
+    <!--JS-->
+
+    <script src="/static/js/jquery.2.1.4.min.js"></script>
+    <script src="/static/js/my.js"></script>
+    <script>
+        $("html").append("<div class='jiazai'><img src='/static/images/icon/loading.gif'/><span>正在加载中请等待...</span></div>")
+    </script>
+    <script src="/static/js/superbg.min.js"></script>
+    <script src="/static/js/superbg-custom.js"></script>
+    <script src="/static/js/tooltip.js"></script>
+    <script src="/static/js/layer/layer.js"></script>
+
+    <!--[if lte IE 8]>
+    <script>window.location.href = 'http://cdn.dmeng.net/upgrade-your-browser.html?referrer=' + location.href;</script>
+    <![endif]-->
+
+</head>
+
+<body class="nobg">
+
+<!--导航开始-->
+{% include "blog/header.html" %}
+<!--导航结束-->
+
+<!--主题框架开始-->
+<div class="container">
+    <!--左侧开始-->
+    {% block content %}
+    {% endblock %}
+    <!--左侧结束-->
+
+    <!--右侧开始-->
+    {% include "blog/right.html" %}
+    <!--END右侧-->
+</div>
+<!--主题框架结束-->
+
+
+<!---底部开始-->
+{% include "blog/footer.html" %}
+<!---END底部-->
+
+{% block js %}{% endblock %}
+
+</body>
+</html>
